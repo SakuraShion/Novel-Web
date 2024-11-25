@@ -1,0 +1,15 @@
+java2nb:
+  uploadPath: /var/pic/
+  username: admin
+  password: 111111
+
+
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: test123456
+    timeout: 10000
+
+server:
+  session-timeout: 18000

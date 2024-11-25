@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.novelcommon.mapper.AuthorCodeMapper">
+
+    <resultMap id="BaseResultMap" type="org.example.novelcommon.domain.AuthorCode">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="inviteCode" column="invite_code" jdbcType="VARCHAR"/>
+            <result property="validityTime" column="validity_time" jdbcType="TIMESTAMP"/>
+            <result property="isUse" column="is_use" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createUserId" column="create_user_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,invite_code,validity_time,
+        is_use,create_time,create_user_id
+    </sql>
+</mapper>

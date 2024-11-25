@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.novel.common.mapper.SysGenColumnsMapper">
+
+    <resultMap id="BaseResultMap" type="org.example.novel.common.domain.SysGenColumns">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="tableName" column="table_name" jdbcType="VARCHAR"/>
+            <result property="columnName" column="column_name" jdbcType="VARCHAR"/>
+            <result property="columnType" column="column_type" jdbcType="VARCHAR"/>
+            <result property="javaType" column="java_type" jdbcType="VARCHAR"/>
+            <result property="columnComment" column="column_comment" jdbcType="VARCHAR"/>
+            <result property="columnSort" column="column_sort" jdbcType="TINYINT"/>
+            <result property="columnLabel" column="column_label" jdbcType="VARCHAR"/>
+            <result property="pageType" column="page_type" jdbcType="TINYINT"/>
+            <result property="isRequired" column="is_required" jdbcType="TINYINT"/>
+            <result property="dictType" column="dict_type" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,table_name,column_name,
+        column_type,java_type,column_comment,
+        column_sort,column_label,page_type,
+        is_required,dict_type
+    </sql>
+    <select id="selectByTableName" resultType="org.example.novel.common.domain.SysGenColumns">
+        select table_name tableName, engine, table_comment tableComment, create_time createTime from information_schema.tables where table_schema = novel_plus and table_name = #{tableName}
+    </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.novel.novel.mapper.AuthorCodeMapper">
+
+    <resultMap id="BaseResultMap" type="org.example.novel.novel.domain.AuthorCode">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="inviteCode" column="invite_code" jdbcType="VARCHAR"/>
+            <result property="validityTime" column="validity_time" jdbcType="TIMESTAMP"/>
+            <result property="isUse" column="is_use" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createUserId" column="create_user_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,invite_code,validity_time,
+        is_use,create_time,create_user_id
+    </sql>
+    <select id="list" resultType="org.example.novel.novel.domain.AuthorCode">
+        select id,inviteCode,validityTime,isUse,createTime,createUserId from author_code <where>
+        <if test="id!=null and id!=''">id=#{id}</if>
+        <if test="inviteCode!=null and inviteCode!=''">invite_code=#{inviteCode}</if>
+        <if test="validityTime!=null and validityTime!=''">validity_time=#{validityTime}</if>
+        <if test="isUse!=null and isUse!=''">is_use=#{isUse}</if>
+        <if test="createTime!=null and createTime!=''">create_time=#{createTime}</if>
+        <if test="createUserId!=null and createUserId!=''">create_user_id=#{createUserId}</if>
+    </where>
+    </select>
+</mapper>

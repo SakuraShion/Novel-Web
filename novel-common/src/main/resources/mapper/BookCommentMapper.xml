@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.novelcommon.mapper.BookCommentMapper">
+
+    <resultMap id="BaseResultMap" type="org.example.novelcommon.domain.BookComment">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="bookId" column="book_id" jdbcType="BIGINT"/>
+            <result property="commentContent" column="comment_content" jdbcType="VARCHAR"/>
+            <result property="replyCount" column="reply_count" jdbcType="INTEGER"/>
+            <result property="auditStatus" column="audit_status" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createUserId" column="create_user_id" jdbcType="BIGINT"/>
+            <result property="supportCount" column="support_count" jdbcType="INTEGER"/>
+            <result property="oppositionCount" column="opposition_count" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,book_id,comment_content,
+        reply_count,audit_status,create_time,
+        create_user_id,support_count,opposition_count
+    </sql>
+</mapper>

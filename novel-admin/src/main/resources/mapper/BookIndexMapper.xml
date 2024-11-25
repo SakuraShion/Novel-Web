@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.novel.novel.mapper.BookIndexMapper">
+
+    <resultMap id="BaseResultMap" type="org.example.novel.novel.domain.BookIndex">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="bookId" column="book_id" jdbcType="BIGINT"/>
+            <result property="indexNum" column="index_num" jdbcType="INTEGER"/>
+            <result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+            <result property="wordCount" column="word_count" jdbcType="INTEGER"/>
+            <result property="isVip" column="is_vip" jdbcType="TINYINT"/>
+            <result property="bookPrice" column="book_price" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,book_id,index_num,
+        index_name,word_count,is_vip,
+        book_price,create_time,update_time
+    </sql>
+
+    <select id="list" resultType="org.example.novel.novel.domain.BookIndex">
+select
+        `id`,`book_id`,`index_num`,`index_name`,`word_count`,`is_vip`,`book_price`,`storage_type`,`create_time`,`update_time`
+        from book_index
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="bookId != null and bookId != ''">and book_id = #{bookId}</if>
+            <if test="indexNum != null and indexNum != ''">and index_num = #{indexNum}</if>
+            <if test="indexName != null and indexName != ''">and index_name = #{indexName}</if>
+            <if test="wordCount != null and wordCount != ''">and word_count = #{wordCount}</if>
+            <if test="isVip != null and isVip != ''">and is_vip = #{isVip}</if>
+            <if test="bookPrice != null and bookPrice != ''">and book_price = #{bookPrice}</if>
+            <if test="storageType != null and storageType != ''">and storage_type = #{storageType}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if></select>
+
+</mapper>

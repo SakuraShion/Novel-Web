@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.novel.novel.mapper.BookSettingMapper">
+
+    <resultMap id="BaseResultMap" type="org.example.novel.novel.domain.BookSetting">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="bookId" column="book_id" jdbcType="BIGINT"/>
+            <result property="sort" column="sort" jdbcType="TINYINT"/>
+            <result property="type" column="type" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createUserId" column="create_user_id" jdbcType="BIGINT"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="updateUserId" column="update_user_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,book_id,sort,
+        type,create_time,create_user_id,
+        update_time,update_user_id
+    </sql>
+
+    <select id="list" resultType="org.example.novel.novel.domain.BookSetting">
+        select `id`,`book_id`,`sort`,`type`,`create_time`,`create_user_id`,`update_time`,`update_user_id` from
+        book_setting
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="bookId != null and bookId != ''">and book_id = #{bookId}</if>
+            <if test="sort != null and sort != ''">and sort = #{sort}</if>
+            <if test="type != null and type != ''">and type = #{type}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="createUserId != null and createUserId != ''">and create_user_id = #{createUserId}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="updateUserId != null and updateUserId != ''">and update_user_id = #{updateUserId}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+</mapper>
