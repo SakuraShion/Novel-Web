@@ -3,6 +3,9 @@ package org.example.novel.novel.mapper;
 import org.example.novel.novel.domain.News;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+import java.util.Map;
+
 /**
 * @author 15268
 * @description 针对表【news(新闻表)】的数据库操作Mapper
@@ -10,6 +13,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity mp.domain.News
 */
 public interface NewsMapper extends BaseMapper<News> {
+
+    List<News> list(Map map);
 
 }
 

@@ -51,7 +51,7 @@ public class BookSettingController {
         if (bookSettingService.save(bookSetting)) {
             return R.ok();
         }
-        redisTemplate.
+        redisTemplate.delete(CacheKey.INDEX_BOOK_SETTINGS_KEY);
         return R.error();
     }
     /**

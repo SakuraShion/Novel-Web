@@ -26,4 +26,8 @@
     <select id="getUserNameById" resultType="String">
         select userName from user where id=#{createUserId}
     </select>
+
+    <select id="tableSta" resultType="map">
+        select DATE_FORMAT(create_time,"%Y-%m-%d") as staDay ,count(1) as userCount from user where create_time>=#{minDate} GROUP BY staDay
+    </select>
 </mapper>

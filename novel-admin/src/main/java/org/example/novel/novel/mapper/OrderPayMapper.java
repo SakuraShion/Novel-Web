@@ -1,7 +1,12 @@
 package org.example.novel.novel.mapper;
 
+import org.apache.ibatis.annotations.MapKey;
 import org.example.novel.novel.domain.OrderPay;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
 * @author 15268
@@ -10,7 +15,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity mp.domain.OrderPay
 */
 public interface OrderPayMapper extends BaseMapper<OrderPay> {
+    List<OrderPay> list (Map map);
 
+    @MapKey("staDay")
+    List<Map<Object, Object>> count(Date minDate);
 }
 
 

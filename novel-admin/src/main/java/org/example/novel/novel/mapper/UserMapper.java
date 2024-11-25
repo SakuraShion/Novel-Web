@@ -1,7 +1,12 @@
 package org.example.novel.novel.mapper;
 
+import org.apache.ibatis.annotations.MapKey;
 import org.example.novel.novel.domain.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
 * @author 15268
@@ -12,6 +17,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface UserMapper extends BaseMapper<User> {
 
     String getUserNameById(Long createUserId);
+
+    @MapKey("staDay")
+    List<Map<Object, Object>> tableSta(Date minDate);
 }
 
 

@@ -21,4 +21,30 @@
         sort,is_open,create_user_id,
         create_time,update_user_id,update_time
     </sql>
+
+    <select id="list" resultType="org.example.novel.novel.domain.FriendLink">
+        select `id`,`link_name`,`link_url`,`sort`,`is_open`,`create_user_id`,`create_time`,`update_user_id`,`update_time` from friend_link
+        <where>
+            <if test="id != null and id != ''"> and id = #{id} </if>
+            <if test="linkName != null and linkName != ''"> and link_name = #{linkName} </if>
+            <if test="linkUrl != null and linkUrl != ''"> and link_url = #{linkUrl} </if>
+            <if test="sort != null and sort != ''"> and sort = #{sort} </if>
+            <if test="isOpen != null and isOpen != ''"> and is_open = #{isOpen} </if>
+            <if test="createUserId != null and createUserId != ''"> and create_user_id = #{createUserId} </if>
+            <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+            <if test="updateUserId != null and updateUserId != ''"> and update_user_id = #{updateUserId} </if>
+            <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
 </mapper>

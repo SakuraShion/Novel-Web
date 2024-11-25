@@ -92,4 +92,8 @@
         </if>
     </select>
 
+    <select id="count" resultType="org.example.novel.novel.domain.Dto.AtaCount">
+        select DATE_FORMAT(create_time,"%Y-%m-%d") as staDay ,count(1) as userCount from book where create_time>=#{minDate} GROUP BY staDay
+    </select>
+
 </mapper>

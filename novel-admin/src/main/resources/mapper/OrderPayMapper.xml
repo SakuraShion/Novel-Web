@@ -21,4 +21,34 @@
         pay_channel,total_amount,user_id,
         pay_status,create_time,update_time
     </sql>
+
+    <select id="list" resultType="org.example.novel.novel.domain.OrderPay">
+        select `id`,`out_trade_no`,`trade_no`,`pay_channel`,`total_amount`,`user_id`,`pay_status`,`create_time`,`update_time` from order_pay
+        <where>
+            <if test="id != null and id != ''"> and id = #{id} </if>
+            <if test="outTradeNo != null and outTradeNo != ''"> and out_trade_no = #{outTradeNo} </if>
+            <if test="tradeNo != null and tradeNo != ''"> and trade_no = #{tradeNo} </if>
+            <if test="payChannel != null and payChannel != ''"> and pay_channel = #{payChannel} </if>
+            <if test="totalAmount != null and totalAmount != ''"> and total_amount = #{totalAmount} </if>
+            <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
+            <if test="payStatus != null and payStatus != ''"> and pay_status = #{payStatus} </if>
+            <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+            <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="Map">
+        select DATE_FORMAT(create_time,"%Y-%m-%d") as staDay ,count(1) as OrderByCount from order_pay where create_time>#{minDate} GROUP BY staDay
+    </select>
 </mapper>

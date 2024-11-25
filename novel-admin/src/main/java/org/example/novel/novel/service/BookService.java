@@ -3,6 +3,7 @@ package org.example.novel.novel.service;
 import org.example.novel.novel.domain.Book;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,4 +16,6 @@ public interface BookService extends IService<Book> {
 
     Book get(Long id);
     List<Book> list (Map map);
+
+    Map<Object, Object> tableSta(Date minDate);
 }

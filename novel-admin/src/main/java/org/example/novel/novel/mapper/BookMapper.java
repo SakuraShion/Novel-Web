@@ -2,7 +2,9 @@ package org.example.novel.novel.mapper;
 
 import org.example.novel.novel.domain.Book;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.example.novel.novel.domain.Dto.AtaCount;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +17,7 @@ import java.util.Map;
 public interface BookMapper extends BaseMapper<Book> {
     List<Book> list(Map map);
 
+    List<AtaCount> count(Date minDate);
 }
 
 

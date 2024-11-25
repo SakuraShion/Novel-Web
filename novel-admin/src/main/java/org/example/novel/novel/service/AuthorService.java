@@ -3,6 +3,7 @@ package org.example.novel.novel.service;
 import org.example.novel.novel.domain.Author;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -14,4 +15,5 @@ import java.util.Map;
 public interface AuthorService extends IService<Author> {
     List<Author> list(Map map);
 
+    Map<Object, Object> tableSta(Date minDate);
 }

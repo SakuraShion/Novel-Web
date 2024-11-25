@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.github.xxyopen.util.IdWorker;
 import org.example.novel.common.service.SysFileService;
 import org.example.novel.novel.domain.Book;
+import org.example.novel.novel.domain.Dto.AtaCount;
 import org.example.novel.novel.mapper.BookAuthorMapper;
 import org.example.novel.novel.mapper.BookContentMapper;
 import org.example.novel.novel.mapper.BookIndexMapper;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +42,11 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book>
     @Override
     public List<Book> list(Map map) {
         return bookMapper.list(map);
+    }
+
+    @Override
+    public Map<Object, Object> tableSta(Date minDate) {
+        List<AtaCount>  ataCounts=bookMapper.count(minDate);
     }
 }
 
